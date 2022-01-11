@@ -68,6 +68,9 @@ Locales['de'] = {
 
   ['id_card'] = 'ID Karte',
   ['search'] = 'Suche',
+  ['detector'] = 'Metalldetektor',
+  ['no_detected_weapon'] = 'keine Waffen gefunden',
+  ['detected_weapon'] = 'Waffe GEFUNDEN!',
   ['handcuff'] = 'Festnehmen / Freilassen',
   ['drag'] = 'drag',
   ['put_in_vehicle'] = 'In Fahrzeug setzen',
