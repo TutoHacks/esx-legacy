@@ -499,12 +499,6 @@ ESX.RegisterServerCallback('esx_policejob:playerDetector', function(playerId, cb
         		cb(true)
         		return
         	end
-        	for k, item in pairs(xTarget.getInventory()) do
-        		if(item.count > 0 and Config.detectItems[item.name]) then
-        			cb(true)
-        			return
-        		end
-        	end
         end
 
         cb(false)
