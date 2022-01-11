@@ -68,6 +68,9 @@ Locales['en'] = {
 
   ['id_card'] = 'ID Card',
   ['search'] = 'search',
+  ['detector'] = 'Metal Detector',
+  ['no_detected_weapon'] = 'no Weapon detected',
+  ['detected_weapon'] = 'Weapon DETECTED!',
   ['handcuff'] = 'cuff / Uncuff',
   ['drag'] = 'escort',
   ['put_in_vehicle'] = 'put in Vehicle',
