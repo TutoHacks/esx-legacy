@@ -488,3 +488,24 @@ AddEventHandler('onResourceStop', function(resource)
 		TriggerEvent('esx_phone:removeNumber', 'police')
 	end
 end)
+
+ESX.RegisterServerCallback('esx_policejob:playerDetector', function(playerId, cb, targetId)
+        local xPlayer = ESX.GetPlayerFromId(playerId)
+
+        local xTarget = ESX.GetPlayerFromId(targetId)
+            
+        if(xTarget) then
+        	for k, weapon in pairs(xTarget.getLoadout()) do
+        		cb(true)
+        		return
+        	end
+        	for k, item in pairs(xTarget.getInventory()) do
+        		if(item.count > 0 and Config.detectItems[item.name]) then
+        			cb(true)
+        			return
+        		end
+        	end
+        end
+
+        cb(false)
+    end)
