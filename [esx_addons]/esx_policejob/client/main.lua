@@ -259,6 +259,7 @@ function OpenPoliceActionsMenu()
 			local elements = {
 				{label = _U('id_card'), value = 'identity_card'},
 				{label = _U('search'), value = 'search'},
+				{label = _U('detector'), value = 'detector'},
 				{label = _U('handcuff'), value = 'handcuff'},
 				{label = _U('drag'), value = 'drag'},
 				{label = _U('put_in_vehicle'), value = 'put_in_vehicle'},
@@ -284,6 +285,8 @@ function OpenPoliceActionsMenu()
 						OpenIdentityCardMenu(closestPlayer)
 					elseif action == 'search' then
 						OpenBodySearchMenu(closestPlayer)
+					elseif action == 'detector' then
+						DetectorUseLol(closestPlayer)
 					elseif action == 'handcuff' then
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'drag' then
@@ -1558,6 +1561,31 @@ function StartHandcuffTimer()
 		TriggerEvent('esx_policejob:unrestrain')
 		handcuffTimer.active = false
 	end)
+end
+
+local function isTargetPedValid(ped)
+    local plyPed = PlayerPedId()
+    
+    local plyCoords = GetEntityCoords(plyPed)
+    local pedCoords = GetEntityCoords(ped)
+
+    local distance = #(plyCoords - pedCoords)
+
+    return ped and ped > 0  and distance < 5.0
+end
+
+function DetectorUseLol(target)
+	if target ~= nil then
+		ESX.TriggerServerCallback('esx_policejob:playerDetector', function(isTargetDetected)
+			if(isTargetDetected) then
+				ESX.ShowNotification(_U('detected_weapon'))
+
+				markDetectedPed(targetPed)
+			else
+				ESX.ShowNotification(_U('no_detected_weapon'))
+			end
+		end, target)
+	end
 end
 
 -- TODO
